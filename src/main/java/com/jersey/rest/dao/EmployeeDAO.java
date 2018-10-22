@@ -36,7 +36,7 @@ public class EmployeeDAO {
 		    if(emp != null) {
 		    	empNo = emp.getId();
 			    if (Validator.isEmpty(empNo)) {
-			    	throw new EmployeeException(Constants.ERRORINVALIDTYPE);
+			    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 			    }
 				conn = DataSourceListener.getPostGresDS().getConnection();
 
@@ -52,8 +52,8 @@ public class EmployeeDAO {
 
 				logger.log(Level.INFO, "EmployeeDAO: {0} of row(s) inserted.", result);
 		    }else {
-				logger.log(Level.INFO, Constants.ERRORINVALIDINPUT);
-		    	throw new EmployeeException(Constants.ERRORINVALIDINPUT);
+				logger.log(Level.INFO, Constants.ERROR_INVALID_INPUT);
+		    	throw new EmployeeException(Constants.ERROR_INVALID_INPUT);
 		    }
 	    } catch (Exception e) {
 			logger.log(Level.INFO, e.getMessage(), e);
@@ -79,7 +79,7 @@ public class EmployeeDAO {
 		    if(emp != null) {
 		    	empNo = emp.getId();
 			    if (Validator.isEmpty(empNo)) {
-			    	throw new EmployeeException(Constants.ERRORINVALIDTYPE);
+			    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 			    }
 				conn = DataSourceListener.getPostGresDS().getConnection();
 
@@ -95,8 +95,8 @@ public class EmployeeDAO {
 
 				logger.log(Level.INFO, "EmployeeDAO: {0} of row(s) updated.", result);
 		    }else {
-				logger.log(Level.INFO, Constants.ERRORINVALIDINPUT);
-		    	throw new EmployeeException(Constants.ERRORINVALIDINPUT);
+				logger.log(Level.INFO, Constants.ERROR_INVALID_INPUT);
+		    	throw new EmployeeException(Constants.ERROR_INVALID_INPUT);
 		    }
 	    } catch (Exception e) {
 			logger.log(Level.INFO, e.getMessage(), e);
@@ -119,7 +119,7 @@ public class EmployeeDAO {
 	    int result = 0;
 	    try {
 		    if (Validator.isEmpty(empNo)) {
-		    	throw new EmployeeException(Constants.ERRORINVALIDTYPE);
+		    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 		    }
 			conn = DataSourceListener.getPostGresDS().getConnection();
 
@@ -153,7 +153,7 @@ public class EmployeeDAO {
 	    Employee result = null;
 	    try {
 		    if (Validator.isEmpty(empNo)) {
-		    	throw new EmployeeException(Constants.ERRORINVALIDTYPE);
+		    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 		    }
 			conn = DataSourceListener.getPostGresDS().getConnection();
 

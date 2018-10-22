@@ -18,6 +18,22 @@
 		<servlet-name>Jersey REST Service</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	  <servlet-name>EmployeeDetail</servlet-name>
+	  <servlet-class>com.jersey.rest.servlet.EmployeeDetail</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>EmployeeDetail</servlet-name>
+	  <url-pattern>/employee</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	  <servlet-name>EmployeeList</servlet-name>
+	  <servlet-class>com.jersey.rest.servlet.EmployeeList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>EmployeeList</servlet-name>
+	  <url-pattern>/employees</url-pattern>
+	</servlet-mapping>
 	<resource-ref>
 	  <description>This is for POSTGRES database</description>
 	  <res-ref-name>jdbc/postgres</res-ref-name>

@@ -21,7 +21,7 @@ public class EmployeeServiceImpl {
 		try {
 			if(request != null) {
 				if (Validator.isEmpty(request.getId()) && Validator.isEmpty(request.getName())) {
-					return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+					return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 				}
 				logger.log(Level.INFO, "EmployeeServiceImpl: create() invoked for the employee: [{0}]", request.getName());
 				
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl {
 				
 				logger.log(Level.INFO, "EmployeeServiceImpl: create(): {0}", message);
 			}else {
-				return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 			}
 		} catch (Exception e) {
 			logger.log(Level.INFO, e.getMessage(), e);
@@ -50,7 +50,7 @@ public class EmployeeServiceImpl {
 		try {
 			if(request != null) {
 				if (Validator.isEmpty(request.getId()) && Validator.isEmpty(request.getName())) {
-					return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+					return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 				}
 				logger.log(Level.INFO, "EmployeeServiceImpl: update() invoked for the employee: [{0}]", request.getName());
 				
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl {
 				
 				logger.log(Level.INFO, "EmployeeServiceImpl: update(): {0}", message);
 			}else {
-				return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 			}
 		} catch (Exception e) {
 			logger.log(Level.INFO, e.getMessage(), e);
@@ -78,7 +78,7 @@ public class EmployeeServiceImpl {
 		EmployeeResponse reportNameResponse = new EmployeeResponse();
 		try {
 			if (Validator.isEmpty(empNo)) {
-				return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 			}
 			logger.log(Level.INFO, "EmployeeServiceImpl: read() invoked for the employee: [{0}]", empNo);
 			
@@ -129,7 +129,7 @@ public class EmployeeServiceImpl {
 		EmployeeResponse reportNameResponse = new EmployeeResponse();
 		try {
 			if (Validator.isEmpty(empNo)) {
-				return generateFailureResponse(generateFailureDetails("1", Constants.ERRORINVALIDINPUT));
+				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 			}
 			logger.log(Level.INFO, "EmployeeServiceImpl: delete() invoked for the employee: [{0}]", empNo);
 			
