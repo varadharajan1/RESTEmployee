@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class DataSourceListener implements ServletContextListener {
 
 	private static final Logger logger = Logger.getLogger(DataSourceListener.class.getName());
-	@Resource(name="jdbc/postgres")
+	@Resource(name="jdbc/postgresDS")
 	private static DataSource postGresDS;
 	  
 	@Override

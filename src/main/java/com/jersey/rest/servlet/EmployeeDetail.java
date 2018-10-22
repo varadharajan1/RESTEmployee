@@ -16,7 +16,6 @@ import com.jersey.rest.dto.Employee;
 import com.jersey.rest.util.Constants;
 import com.jersey.rest.util.Validator;
 
-@WebServlet("/employee")
 public class EmployeeDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

@@ -18,7 +18,6 @@ import com.google.gson.reflect.TypeToken;
 import com.jersey.rest.dao.DAOFactory;
 import com.jersey.rest.dto.Employee;
 
-@WebServlet("/employees")
 public class EmployeeList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
