@@ -33,7 +33,7 @@ public class EmployeeDetail extends HttpServlet {
 		    if (Validator.isNotEmpty(empNo)) {
 		    	Employee emp = DAOFactory.getInstance().getEmployeeDAO().selectEmployee(empNo);
 				if(emp != null) {
-			    	empNo = emp.getId();
+			    	empNo = emp.getEmpNo();
 				    if (Validator.isNotEmpty(empNo)) {
 				    	request.setAttribute(Constants.EMP_FORM, Constants.UPDATE_EMP_FORM);
 				    	request.setAttribute("empData", emp);

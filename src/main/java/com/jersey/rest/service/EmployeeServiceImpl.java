@@ -20,7 +20,7 @@ public class EmployeeServiceImpl {
 		EmployeeResponse reportNameResponse = new EmployeeResponse();
 		try {
 			if(request != null) {
-				if (Validator.isEmpty(request.getId()) && Validator.isEmpty(request.getName())) {
+				if (Validator.isEmpty(request.getEmpNo()) && Validator.isEmpty(request.getName())) {
 					return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 				}
 				logger.log(Level.INFO, "EmployeeServiceImpl: create() invoked for the employee: [{0}]", request.getName());
@@ -49,7 +49,7 @@ public class EmployeeServiceImpl {
 		EmployeeResponse reportNameResponse = new EmployeeResponse();
 		try {
 			if(request != null) {
-				if (Validator.isEmpty(request.getId()) && Validator.isEmpty(request.getName())) {
+				if (Validator.isEmpty(request.getEmpNo()) && Validator.isEmpty(request.getName())) {
 					return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
 				}
 				logger.log(Level.INFO, "EmployeeServiceImpl: update() invoked for the employee: [{0}]", request.getName());
