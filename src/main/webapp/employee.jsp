@@ -26,6 +26,31 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>	
+	    <script>
+			$("#submit").click(function() {
+				$("#employee-form").submit();
+			});
+			$("#reset").click(function() {
+				$('#employee-form').trigger("reset");
+			});
+			$("#employee-form").submit(function(event){
+				event.preventDefault(); //prevent default action 
+			    var post_url = '/RESTEmployee/rest/employee/create';
+				var form_data = $(this).serialize(); //Encode form elements for submission
+				
+				$.post( post_url, form_data, function( response ) {
+					window.location.replace('/RESTEmployee/employees');
+				});
+			});			
+			$("#delete").click(function() {
+			    var post_url = '/RESTEmployee/rest/employee/delete';
+				var empNo = $("input#empNo").val();
+				
+				$.post( post_url, empNo, function( response ) {
+					window.location.replace('/RESTEmployee/employees');
+				});
+			});			
+	    </script>
 		<style>
 		    .bg-grey {
 		        background: #dcdedc;
@@ -34,17 +59,17 @@
 		        background: #b6121b;
 		    }
 			span.input-group-addon {
-		    background: #ddd;
-		    padding: 7px;
-		    cursor: pointer;
-			border-radius: 0px 4px 4px 0px;
-		}
+			    background: #ddd;
+			    padding: 7px;
+			    cursor: pointer;
+				border-radius: 0px 4px 4px 0px;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container-fluid">
 	        <div class="row bg-red p-2">
-	            <div class="col-sm-3 text-center text-sm-left"><img src="images/logo.jpg"></div>
+	            <div class="col-sm-3 text-center text-sm-left"><img src="images/rest-logo.jpg"></div>
 	            <div class="col-sm-6 py-3 py-sm-2 text-lg-left text-center">
 	                <div class="text-white">
 						<c:choose>
@@ -58,7 +83,8 @@
 	                </div>
 	            </div>
 	        </div>
-			<form id="employee-form" action="/RESTEmployee/employee" method="POST">
+			<form id="employee-form" name="employee-form" action="/RESTEmployee/employees" method="POST">
+				<input type="hidden" id="EMP_FORM_TYPE" name="EMP_FORM_TYPE" value="${empForm}">
 		        <div class="row px-lg-4 pt-lg-4 pt-3">
 		            <div class="col-md-6 col-xl-5 col-12">
 		                <div class="row p-sm-2">
@@ -66,7 +92,15 @@
 		                        <strong><fmt:message key="label.rest.employee.number" bundle="${resourceBundle}"/></strong>
 		                    </div>
 		                    <div class="col-sm-8">
-								<input type="text" class="form-control" id="number" name="number" value="${empData.id}">		                    
+								<c:choose>
+								    <c:when test="${empForm == CREATE_EMP_FORM}">
+										<input type="text" class="form-control" id="empNo" name="empNo" value="${empData.empNo}">		                    
+								    </c:when>
+								    <c:otherwise>
+								    	<input type="hidden" class="form-control" id="empNo" name="empNo" value="${empData.empNo}">
+					                   	<h4 class="mb-0"><c:out value="${empData.empNo}"/></h4>
+								    </c:otherwise>
+								</c:choose>
 		                    </div>
 		                </div>
 		                <div class="row p-sm-2">
@@ -91,6 +125,15 @@
 		                    </div>
 		                    <div class="col-sm-8">
 								<input type="text" class="form-control" id="designation" name="designation" value="${empData.designation}">		                    
+		                    </div>
+		                </div>
+		                <div class="row p-sm-2">
+		                    <div class="col-sm-12 text-center">
+								<input type="button" class="btn btn-secondary" id="cancel" name="cancel" value="Cancel">		                    
+							    <c:if test="${empForm == UPDATE_EMP_FORM}">
+								<input type="button" class="btn btn-secondary" id="delete" name="delete" value="Delete">
+							    </c:if>
+								<input type="button" class="btn btn-primary" id="submit" name="submit" value="Submit">		                    
 		                    </div>
 		                </div>
 		            </div>

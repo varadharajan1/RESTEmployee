@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class Employee implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private String empNo;
 	private String name;
 	private String designation;
 	private String email;
 
-	public String getId() {
-		return id;
+	public String getEmpNo() {
+		return empNo;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setEmpNo(String empNo) {
+		this.empNo = empNo;
 	}
 	public String getName() {
 		return name;
@@ -36,7 +36,8 @@ public class Employee implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", designation=" + designation + ", email=" + email + "]";
+		return "Employee [empNo=" + empNo + ", name=" + name + ", designation=" + designation + ", email=" + email
+				+ "]";
 	}
 
 }

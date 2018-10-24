@@ -31,7 +31,6 @@ public class EmployeeDetail extends HttpServlet {
 		try {
 			String empNo = request.getParameter("empno");
 		    if (Validator.isNotEmpty(empNo)) {
-
 		    	Employee emp = DAOFactory.getInstance().getEmployeeDAO().selectEmployee(empNo);
 				if(emp != null) {
 			    	empNo = emp.getId();

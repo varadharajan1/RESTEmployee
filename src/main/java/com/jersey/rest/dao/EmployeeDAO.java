@@ -34,7 +34,7 @@ public class EmployeeDAO {
 	    int result = 0;
 	    try {
 		    if(emp != null) {
-		    	empNo = emp.getId();
+		    	empNo = emp.getEmpNo();
 			    if (Validator.isEmpty(empNo)) {
 			    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 			    }
@@ -43,7 +43,7 @@ public class EmployeeDAO {
 				logger.log(Level.INFO, "EmployeeDAO: insert SQL: {0} ", insertEmployee);
 				
 				ps = conn.prepareStatement(insertEmployee);
-				ps.setString(1, emp.getId());
+				ps.setString(1, emp.getEmpNo());
 				ps.setString(2, emp.getName());
 				ps.setString(3, emp.getEmail());
 				ps.setString(4, emp.getDesignation());
@@ -77,7 +77,7 @@ public class EmployeeDAO {
 	    int result = 0;
 	    try {
 		    if(emp != null) {
-		    	empNo = emp.getId();
+		    	empNo = emp.getEmpNo();
 			    if (Validator.isEmpty(empNo)) {
 			    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 			    }
@@ -89,7 +89,7 @@ public class EmployeeDAO {
 				ps.setString(1, emp.getName());
 				ps.setString(2, emp.getEmail());
 				ps.setString(3, emp.getDesignation());
-				ps.setString(4, emp.getId());
+				ps.setString(4, emp.getEmpNo());
 
 				result = ps.executeUpdate();
 
@@ -217,7 +217,7 @@ public class EmployeeDAO {
 	private Employee populateItems(ResultSet rs) throws SQLException{
 		Employee emp = new Employee();
 
-		emp.setId(rs.getString("EMP_NO"));
+		emp.setEmpNo(rs.getString("EMP_NO"));
 		emp.setName(rs.getString("EMP_NAME"));
 		emp.setEmail(rs.getString("EMAIL"));
 		emp.setDesignation(rs.getString("DESIGNARION"));

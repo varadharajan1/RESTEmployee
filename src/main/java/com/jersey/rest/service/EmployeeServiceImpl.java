@@ -54,7 +54,7 @@ public class EmployeeServiceImpl {
 				}
 				logger.log(Level.INFO, "EmployeeServiceImpl: update() invoked for the employee: [{0}]", request.getName());
 				
-				int result = DAOFactory.getInstance().getEmployeeDAO().insertEmployee(request);
+				int result = DAOFactory.getInstance().getEmployeeDAO().updateEmployee(request);
 				
 				String message = result + " row(s) updated successfully.";
 				

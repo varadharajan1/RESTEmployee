@@ -89,7 +89,7 @@
 		        "searching": false,
 		        "data": dataObject,
 		        "columns": [
-		            { "data": "id", "visible":true },
+		            { "data": "empNo", "visible":true },
 		            { "data": "name", "visible":true  },
 		            { "data": "email", "visible":true  },
 		            { "data": "designation", "visible":true  }
@@ -102,7 +102,7 @@
 	<body>
 	    <div class="container-fluid">
 	        <div class="row bg-red p-2">
-	            <div class="col-sm-3 text-center text-sm-left"><img src="images/logo.jpg"></div>
+	            <div class="col-sm-3 text-center text-sm-left"><img src="images/rest-logo.jpg"></div>
 	            <div class="col-sm-5 py-3 py-sm-2 text-lg-left text-center">
 	                <div class="text-white">
 	                    <h4 class="mb-0"><fmt:message key="page.heading.rest.employee.list" bundle="${resourceBundle}"/></h4>
@@ -111,18 +111,25 @@
 	        </div>
 	        <div class="row py-3">
 	            <div class="col-12">
-	                    <table id="res-data-table" class="table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-	                        <thead>
-	                            <tr>
-	                                <th><fmt:message key="label.rest.employee.number" bundle="${resourceBundle}"/></th>
-	                                <th><fmt:message key="label.rest.employee.name" bundle="${resourceBundle}"/></th>
-	                                <th><fmt:message key="label.rest.employee.email" bundle="${resourceBundle}"/></th>
-	                                <th><fmt:message key="label.rest.employee.designation" bundle="${resourceBundle}"/></th>
-	                            </tr>
-	                        </thead>
-	                   </table> 
+                    <table id="res-data-table" class="table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th><fmt:message key="label.rest.employee.number" bundle="${resourceBundle}"/></th>
+                                <th><fmt:message key="label.rest.employee.name" bundle="${resourceBundle}"/></th>
+                                <th><fmt:message key="label.rest.employee.email" bundle="${resourceBundle}"/></th>
+                                <th><fmt:message key="label.rest.employee.designation" bundle="${resourceBundle}"/></th>
+                            </tr>
+                        </thead>
+                   </table> 
 	            </div>
 	        </div>
+	    	<form id="employee-form" action="/RESTEmployee/employee" method="GET">
+		        <div class="row">
+		            <div class="col-12 col-sm-12">
+						<input type="button" class="btn btn-primary" id="addNewEmployee" name="addNewEmployee" value="Add New Employee">		                    
+		            </div>
+		        </div>
+		    </form>
 	    </div>
 	</body>
 </html>

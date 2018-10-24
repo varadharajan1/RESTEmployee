@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/RESTEmployee" docBase="RESTEmployee" crossContext="true" reloadable="true" debug="1">
+<Context path="/RESTEmployee" docBase="RESTEmployee" crossContext="true" reloadable="true">
 	<Resource name="jdbc/postgresDS" auth="Container"
           type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
           url="jdbc:postgresql://localhost:5432/postdb"
