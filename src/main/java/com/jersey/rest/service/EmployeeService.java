@@ -32,7 +32,6 @@ public class EmployeeService {
 
 	@GET
 	@Path("/readAll")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public EmployeeResponse read() {
 		EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl();

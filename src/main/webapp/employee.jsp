@@ -27,29 +27,63 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>	
 	    <script>
-			$("#submit").click(function() {
-				$("#employee-form").submit();
-			});
-			$("#reset").click(function() {
-				$('#employee-form').trigger("reset");
-			});
-			$("#employee-form").submit(function(event){
-				event.preventDefault(); //prevent default action 
-			    var post_url = '/RESTEmployee/rest/employee/create';
-				var form_data = $(this).serialize(); //Encode form elements for submission
-				
-				$.post( post_url, form_data, function( response ) {
-					window.location.replace('/RESTEmployee/employees');
+		    $(function () {
+				$("#submit").click(function() {
+					console.log('submit button clicked.');
+					$("#employee-form").submit();
 				});
-			});			
-			$("#delete").click(function() {
-			    var post_url = '/RESTEmployee/rest/employee/delete';
-				var empNo = $("input#empNo").val();
-				
-				$.post( post_url, empNo, function( response ) {
-					window.location.replace('/RESTEmployee/employees');
+				$("#reset").click(function() {
+					$('#employee-form').trigger("reset");
 				});
-			});			
+				$("#employee-form").submit(function(event){
+					console.log('form submit called.');
+					event.preventDefault();
+			<c:choose>
+			    <c:when test="${empForm == CREATE_EMP_FORM}">
+				    var post_url = '/RESTEmployee/rest/employee/create';
+			    </c:when>
+			    <c:otherwise>
+				    var post_url = '/RESTEmployee/rest/employee/update';
+			    </c:otherwise>
+			</c:choose>
+					var form_data = new FormData(this);
+					var request_method = $(this).attr("method");
+
+					var formObject = {};
+					form_data.forEach(function(value, key){
+						formObject[key] = value;
+					});
+					var form_json = JSON.stringify(formObject);
+					console.log('form_json: '+form_json);
+					
+				    $.ajax({
+				        url : post_url,
+				        type: request_method,
+				        data : form_json,
+						dataType: 'json',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						processData:false
+				    }).done(function(response){ 
+						window.location.replace('/RESTEmployee/employees');
+				    });
+
+				    /*$.post( post_url, form_json, function( response, status, xhr ) {
+						
+						console.log('successfully inserted/updated.');
+						window.location.replace('/RESTEmployee/employees');
+					}, "application/json");*/
+				    
+				});			
+				$("#delete").click(function() {
+				    var post_url = '/RESTEmployee/rest/employee/delete';
+					var empNo = $("input#empNo").val();
+					
+					$.post( post_url, empNo, function( response ) {
+						window.location.replace('/RESTEmployee/employees');
+					}, "json");
+				});			
+			});
 	    </script>
 		<style>
 		    .bg-grey {
@@ -84,7 +118,6 @@
 	            </div>
 	        </div>
 			<form id="employee-form" name="employee-form" action="/RESTEmployee/employees" method="POST">
-				<input type="hidden" id="EMP_FORM_TYPE" name="EMP_FORM_TYPE" value="${empForm}">
 		        <div class="row px-lg-4 pt-lg-4 pt-3">
 		            <div class="col-md-6 col-xl-5 col-12">
 		                <div class="row p-sm-2">

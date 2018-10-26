@@ -23,7 +23,7 @@ public class EmployeeDAO {
 	private String updateEmployee = "UPDATE EMPLOYEE SET EMP_NAME=? , EMAIL=? , DESIGNATION=? WHERE EMP_NO=?";
 	private String deleteEmployee = "DELETE FROM EMPLOYEE WHERE EMP_NO=?";
 	private String selectEmployee = "SELECT (EMP_NO, EMP_NAME, EMAIL, DESIGNATION) FROM EMPLOYEE WHERE EMP_NO=?";
-	private String selectAll = "SELECT (EMP_NO, EMP_NAME, EMAIL, DESIGNATION) FROM EMPLOYEE";
+	private String selectAll = "SELECT EMP_NO, EMP_NAME, EMAIL, DESIGNATION FROM EMPLOYEE";
 	
 	public int insertEmployee(Employee emp) {
 		logger.log(Level.INFO, "EmployeeDAO: insertEmployee() executed.");
@@ -220,7 +220,7 @@ public class EmployeeDAO {
 		emp.setEmpNo(rs.getString("EMP_NO"));
 		emp.setName(rs.getString("EMP_NAME"));
 		emp.setEmail(rs.getString("EMAIL"));
-		emp.setDesignation(rs.getString("DESIGNARION"));
+		emp.setDesignation(rs.getString("DESIGNATION"));
 
 		return emp;
 	}

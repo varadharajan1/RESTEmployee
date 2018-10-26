@@ -17,7 +17,8 @@ public class EmployeeServiceImpl {
 	private static final Logger logger = Logger.getLogger(EmployeeServiceImpl.class.getName());
 	
 	public EmployeeResponse create(Employee request) {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
+		logger.log(Level.INFO, "EmployeeServiceImpl: create() [{0}]", request);
 		try {
 			if(request != null) {
 				if (Validator.isEmpty(request.getEmpNo()) && Validator.isEmpty(request.getName())) {
@@ -30,8 +31,8 @@ public class EmployeeServiceImpl {
 				String message = result + " row(s) inserted successfully.";
 				
 				ResponseData data = new ResponseData();
-				reportNameResponse.setData(data);
-				reportNameResponse.setDetails(generateSuccessDetails(message));
+				employeeResponse.setData(data);
+				employeeResponse.setDetails(generateSuccessDetails(message));
 				
 				logger.log(Level.INFO, "EmployeeServiceImpl: create(): {0}", message);
 			}else {
@@ -42,11 +43,12 @@ public class EmployeeServiceImpl {
 			return generateFailureResponse(generateFailureDetails("128", e.getMessage()));
 		}
 		logger.log(Level.INFO, "EmployeeServiceImpl: create: ended");
-		return reportNameResponse;
+		return employeeResponse;
 	}
 
 	public EmployeeResponse update(Employee request) {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
+		logger.log(Level.INFO, "EmployeeServiceImpl: update() [{0}]", request);
 		try {
 			if(request != null) {
 				if (Validator.isEmpty(request.getEmpNo()) && Validator.isEmpty(request.getName())) {
@@ -59,8 +61,8 @@ public class EmployeeServiceImpl {
 				String message = result + " row(s) updated successfully.";
 				
 				ResponseData data = new ResponseData();
-				reportNameResponse.setData(data);
-				reportNameResponse.setDetails(generateSuccessDetails(message));
+				employeeResponse.setData(data);
+				employeeResponse.setDetails(generateSuccessDetails(message));
 				
 				logger.log(Level.INFO, "EmployeeServiceImpl: update(): {0}", message);
 			}else {
@@ -71,11 +73,11 @@ public class EmployeeServiceImpl {
 			return generateFailureResponse(generateFailureDetails("128", e.getMessage()));
 		}
 		logger.log(Level.INFO, "EmployeeServiceImpl: update: ended");
-		return reportNameResponse;
+		return employeeResponse;
 	}
 
 	public EmployeeResponse read(String empNo) {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
 		try {
 			if (Validator.isEmpty(empNo)) {
 				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
@@ -90,8 +92,8 @@ public class EmployeeServiceImpl {
 			
 			ResponseData data = new ResponseData();
 			data.setEmployeeList(employeeList);
-			reportNameResponse.setData(data);
-			reportNameResponse.setDetails(generateSuccessDetails(message));
+			employeeResponse.setData(data);
+			employeeResponse.setDetails(generateSuccessDetails(message));
 			
 			logger.log(Level.INFO, "EmployeeServiceImpl: read(): {0}", employeeList.size());
 		} catch (Exception e) {
@@ -99,11 +101,11 @@ public class EmployeeServiceImpl {
 			return generateFailureResponse(generateFailureDetails("128", e.getMessage()));
 		}
 		logger.log(Level.INFO, "EmployeeServiceImpl: read: ended");
-		return reportNameResponse;
+		return employeeResponse;
 	}
 
 	public EmployeeResponse readAll() {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
 		try {
 			logger.log(Level.INFO, "EmployeeServiceImpl: readAll() invoked. ");
 			
@@ -113,8 +115,8 @@ public class EmployeeServiceImpl {
 			
 			ResponseData data = new ResponseData();
 			data.setEmployeeList(employeeList);
-			reportNameResponse.setData(data);
-			reportNameResponse.setDetails(generateSuccessDetails(message));
+			employeeResponse.setData(data);
+			employeeResponse.setDetails(generateSuccessDetails(message));
 			
 			logger.log(Level.INFO, "EmployeeServiceImpl: readAll(): {0}", employeeList.size());
 		} catch (Exception e) {
@@ -122,11 +124,11 @@ public class EmployeeServiceImpl {
 			return generateFailureResponse(generateFailureDetails("128", e.getMessage()));
 		}
 		logger.log(Level.INFO, "EmployeeServiceImpl: readAll: ended");
-		return reportNameResponse;
+		return employeeResponse;
 	}
 
 	public EmployeeResponse delete(String empNo) {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
 		try {
 			if (Validator.isEmpty(empNo)) {
 				return generateFailureResponse(generateFailureDetails("1", Constants.ERROR_INVALID_INPUT));
@@ -138,8 +140,8 @@ public class EmployeeServiceImpl {
 			String message = result + " row(s) deleted successfully.";
 			
 			ResponseData data = new ResponseData();
-			reportNameResponse.setData(data);
-			reportNameResponse.setDetails(generateSuccessDetails(message));
+			employeeResponse.setData(data);
+			employeeResponse.setDetails(generateSuccessDetails(message));
 			
 			logger.log(Level.INFO, "EmployeeServiceImpl: delete(): {0}", message);
 		} catch (Exception e) {
@@ -147,7 +149,7 @@ public class EmployeeServiceImpl {
 			return generateFailureResponse(generateFailureDetails("128", e.getMessage()));
 		}
 		logger.log(Level.INFO, "EmployeeServiceImpl: delete: ended");
-		return reportNameResponse;
+		return employeeResponse;
 	}
 
 	private ResponseDetails generateFailureDetails(String problemTypes, String message) {
@@ -173,12 +175,12 @@ public class EmployeeServiceImpl {
 	}
 	  
 	private EmployeeResponse generateFailureResponse(ResponseDetails details) {
-		EmployeeResponse reportNameResponse = new EmployeeResponse();
+		EmployeeResponse employeeResponse = new EmployeeResponse();
 		ResponseData data = new ResponseData();
 		
-		reportNameResponse.setData(data);
-		reportNameResponse.setDetails(details);
+		employeeResponse.setData(data);
+		employeeResponse.setDetails(details);
 		
-		return reportNameResponse;
+		return employeeResponse;
 	}	
 }

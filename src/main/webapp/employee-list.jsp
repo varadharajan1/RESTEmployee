@@ -26,78 +26,83 @@
 	    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 		<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 		<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+		<style>
+		    .bg-grey {
+		        background: #dcdedc;
+		    }
+		    
+		    .bg-red {
+		        background: #b6121b;
+		    }
+		    
+		    span.input-group-addon {
+		        background: #ddd;
+		        padding: 7px;
+		        cursor: pointer;
+		        border-radius: 0px 4px 4px 0px;
+		    }
+		    
+		    .bg-light-grey {
+		        background: #ebedeb;
+		    }
+		    
+		    #res-data-table .odd,
+		    #res-data-table .odd:hover {
+		        background: #fff;
+		    }
+		    
+		    div#res-data-table_length {
+		        width: 30%;
+		        float: left;
+		    }
+		    
+		    div#res-data-table_info {
+		        width: 36%;
+		        float: left;
+		        padding-top: 0px;
+		    }
+		    #res-data-table.table td
+			{
+			 padding: .2rem .75rem;
+			}
+		    @media screen and (max-width: 767px) {
+		        div#res-data-table_length,
+		        div#res-data-table_info {
+		            width: 100%;
+		            margin: auto;
+		            float: none;
+		        }
+		        div#res-data-table_length {
+		            padding-top: .5rem;
+		        }
+		    }
+		</style>
+	
+		<script>
+		    $(function () {
+				$("#addNewEmployee").click(function() {
+					console.log('submit button clicked.');
+					$("#employee-form").submit();
+				});
+			});
+			var dataSet = JSON.stringify(<%=request.getAttribute("dataSet")%>);
+			var dataObject = JSON.parse(dataSet);
+			$(document).ready(function() {
+			    $('#res-data-table').DataTable( {
+			    	"responsive": true,
+			        "searching": false,
+			        "data": dataObject,
+			        "columns": [
+			            { "data": "empNo", "visible":true },
+			            { "data": "name", "visible":true  },
+			            { "data": "email", "visible":true  },
+			            { "data": "designation", "visible":true  }
+			        ],
+			        "order": [[1, 'asc']],
+			    } );
+			} );
+		</script>
 	</head>
-	
-	<style>
-	    .bg-grey {
-	        background: #dcdedc;
-	    }
-	    
-	    .bg-red {
-	        background: #b6121b;
-	    }
-	    
-	    span.input-group-addon {
-	        background: #ddd;
-	        padding: 7px;
-	        cursor: pointer;
-	        border-radius: 0px 4px 4px 0px;
-	    }
-	    
-	    .bg-light-grey {
-	        background: #ebedeb;
-	    }
-	    
-	    #res-data-table .odd,
-	    #res-data-table .odd:hover {
-	        background: #fff;
-	    }
-	    
-	    div#res-data-table_length {
-	        width: 30%;
-	        float: left;
-	    }
-	    
-	    div#res-data-table_info {
-	        width: 36%;
-	        float: left;
-	        padding-top: 0px;
-	    }
-	    #res-data-table.table td
-		{
-		 padding: .2rem .75rem;
-		}
-	    @media screen and (max-width: 767px) {
-	        div#res-data-table_length,
-	        div#res-data-table_info {
-	            width: 100%;
-	            margin: auto;
-	            float: none;
-	        }
-	        div#res-data-table_length {
-	            padding-top: .5rem;
-	        }
-	    }
-	</style>
-	
-	<script>
-		var dataSet = JSON.stringify(<%=request.getAttribute("dataSet")%>);
-		var dataObject = JSON.parse(dataSet);
-		$(document).ready(function() {
-		    $('#res-data-table').DataTable( {
-		    	"responsive": true,
-		        "searching": false,
-		        "data": dataObject,
-		        "columns": [
-		            { "data": "empNo", "visible":true },
-		            { "data": "name", "visible":true  },
-		            { "data": "email", "visible":true  },
-		            { "data": "designation", "visible":true  }
-		        ],
-		        "order": [[1, 'asc']],
-		    } );
-		} );
-	</script>
 	
 	<body>
 	    <div class="container-fluid">
