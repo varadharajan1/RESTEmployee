@@ -28,7 +28,7 @@ public class EmployeeDetail extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		String fileName = "employee.jsp";
 		try {
-			String empNo = request.getParameter("empno");
+			String empNo = request.getParameter("empNo");
 		    if (Validator.isNotEmpty(empNo)) {
 		    	Employee emp = DAOFactory.getInstance().getEmployeeDAO().selectEmployee(empNo);
 				if(emp != null) {

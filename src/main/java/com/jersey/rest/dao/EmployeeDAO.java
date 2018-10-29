@@ -22,7 +22,7 @@ public class EmployeeDAO {
 	private String insertEmployee = "INSERT INTO EMPLOYEE (EMP_NO, EMP_NAME, EMAIL, DESIGNATION) VALUES (?,?,?,?)";
 	private String updateEmployee = "UPDATE EMPLOYEE SET EMP_NAME=? , EMAIL=? , DESIGNATION=? WHERE EMP_NO=?";
 	private String deleteEmployee = "DELETE FROM EMPLOYEE WHERE EMP_NO=?";
-	private String selectEmployee = "SELECT (EMP_NO, EMP_NAME, EMAIL, DESIGNATION) FROM EMPLOYEE WHERE EMP_NO=?";
+	private String selectEmployee = "SELECT EMP_NO, EMP_NAME, EMAIL, DESIGNATION FROM EMPLOYEE WHERE EMP_NO=?";
 	private String selectAll = "SELECT EMP_NO, EMP_NAME, EMAIL, DESIGNATION FROM EMPLOYEE";
 	
 	public int insertEmployee(Employee emp) {
@@ -118,12 +118,13 @@ public class EmployeeDAO {
 	    PreparedStatement ps = null;
 	    int result = 0;
 	    try {
+			logger.log(Level.INFO, "EmployeeDAO: employee number {0} : ", empNo);
 		    if (Validator.isEmpty(empNo)) {
 		    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 		    }
 			conn = DataSourceListener.getPostGresDS().getConnection();
 
-			logger.log(Level.INFO, "EmployeeDAO: insert SQL: {0} ", deleteEmployee);
+			logger.log(Level.INFO, "EmployeeDAO: delete SQL: {0} ", deleteEmployee);
 			
 			ps = conn.prepareStatement(deleteEmployee);
 			ps.setString(1, empNo);

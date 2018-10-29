@@ -69,20 +69,31 @@
 				    });
 
 				    /*$.post( post_url, form_json, function( response, status, xhr ) {
-						
 						console.log('successfully inserted/updated.');
 						window.location.replace('/RESTEmployee/employees');
 					}, "application/json");*/
 				    
 				});			
 				$("#delete").click(function() {
-				    var post_url = '/RESTEmployee/rest/employee/delete';
+					var post_url = '/RESTEmployee/rest/employee/delete';
 					var empNo = $("input#empNo").val();
 					
-					$.post( post_url, empNo, function( response ) {
+					var json_data = {};
+					json_data.empNo = empNo;
+					console.log('json_data: '+JSON.stringify(json_data));
+					
+				    $.ajax({
+				        url : post_url,
+				        type: 'POST',
+				        data : empNo,
+						dataType: 'json',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						processData:false
+				    }).done(function(response){ 
 						window.location.replace('/RESTEmployee/employees');
-					}, "json");
-				});			
+				    });
+				});
 			});
 	    </script>
 		<style>

@@ -61,10 +61,11 @@
 		        float: left;
 		        padding-top: 0px;
 		    }
-		    #res-data-table.table td
-			{
+		    #res-data-table.table td {
 			 padding: .2rem .75rem;
 			}
+			#res-data-table.table tbody tr {cursor: pointer;}
+			
 		    @media screen and (max-width: 767px) {
 		        div#res-data-table_length,
 		        div#res-data-table_info {
@@ -88,7 +89,7 @@
 			var dataSet = JSON.stringify(<%=request.getAttribute("dataSet")%>);
 			var dataObject = JSON.parse(dataSet);
 			$(document).ready(function() {
-			    $('#res-data-table').DataTable( {
+				var table = $('#res-data-table').DataTable( {
 			    	"responsive": true,
 			        "searching": false,
 			        "data": dataObject,
@@ -100,6 +101,13 @@
 			        ],
 			        "order": [[1, 'asc']],
 			    } );
+				$('#res-data-table tbody').on('click', 'tr', function () {
+				    var data = table.row( this ).data();
+					/*$.each(data, function( index, value ) {
+						console.log( index + ": " + value );
+					});*/
+					window.location.replace('/RESTEmployee/employee?empNo='+data.empNo);
+				} );			
 			} );
 		</script>
 	</head>
