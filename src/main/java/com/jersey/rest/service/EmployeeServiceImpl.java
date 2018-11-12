@@ -88,7 +88,7 @@ public class EmployeeServiceImpl {
 			List<Employee> employeeList = new ArrayList<>();
 			employeeList.add(result);
 			
-			String message = "";
+			String message = employeeList.size() + " row(s) retrieved successfully.";
 			
 			ResponseData data = new ResponseData();
 			data.setEmployeeList(employeeList);
@@ -111,7 +111,7 @@ public class EmployeeServiceImpl {
 			
 			List<Employee> employeeList = DAOFactory.getInstance().getEmployeeDAO().selectAllEmployees();
 
-			String message = "";
+			String message = employeeList.size() + " row(s) retrieved successfully.";
 			
 			ResponseData data = new ResponseData();
 			data.setEmployeeList(employeeList);

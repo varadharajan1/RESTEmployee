@@ -153,6 +153,7 @@ public class EmployeeDAO {
 	    ResultSet rs = null;
 	    Employee result = null;
 	    try {
+			logger.log(Level.INFO, "EmployeeDAO: employee number {0} : ", empNo);
 		    if (Validator.isEmpty(empNo)) {
 		    	throw new EmployeeException(Constants.ERROR_INVALID_ID);
 		    }

@@ -5,6 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.jersey.rest.dto.Employee;
@@ -21,11 +22,10 @@ public class EmployeeService {
 		return employeeServiceImpl.create(request);
 	}
 
-	@GET
+	@POST
 	@Path("/read")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public EmployeeResponse read(String empNo) {
+	public EmployeeResponse read(@QueryParam("empNo") String empNo) {
 		EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl();
 		return employeeServiceImpl.read(empNo);
 	}
